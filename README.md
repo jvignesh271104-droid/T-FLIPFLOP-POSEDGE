@@ -27,16 +27,37 @@ Here, Qtt & Qt+1t+1 are present state & next state respectively. So, T flip-flop
 From the above characteristic table, we can directly write the next state equation as Q(t+1)=T′Q(t)+TQ(t)′ ⇒Q(t+1)=T⊕Q(t)
 
 **Procedure**
-
-/* write all the steps invloved */
+1.Define Inputs/Outputs: Inputs: T (toggle), clk (clock); Outputs: Q, Qbar (~Q). 
+2.Initialize: Set Q = 0 and Qbar = 1 at the start of simulation. 
+3.Toggle Logic: On posedge clk, update Q 
+4.Complementary Output: Set Qbar = ~Q to maintain complementarity. 
+5.Testbench: Simulate with various T and clk values to verify toggle functionality.
 
 **PROGRAM**
+```
+Program for flipflops and verify its truth table in quartus using Verilog programming.
+Developed by: Jaiakash J
+RegisterNumber: 212225240055
 
-/* Program for flipflops and verify its truth table in quartus using Verilog programming. Developed by: RegisterNumber:
-*/
-
+module exp9(T,clk,Q,Qbar);
+input T,clk;
+output reg Q;
+output reg Qbar;
+initial Q=0;
+initial Qbar=1;
+always @(posedge clk)
+begin 
+Q=(T&(~Q))|((~T)&Q);
+Qbar=~Q;
+end
+endmodule
+```
 **RTL LOGIC FOR FLIPFLOPS**
+<img width="1401" height="795" alt="image" src="https://github.com/user-attachments/assets/b7210ba6-5a31-4fd6-ad27-41f9d5850210" />
 
 **TIMING DIGRAMS FOR FLIP FLOPS**
+<img width="1921" height="1201" alt="image" src="https://github.com/user-attachments/assets/fc353e5f-e206-46da-864a-9491e22ca797" />
 
 **RESULTS**
+
+Thus, the T flipflop is implemented and verified successfully.
